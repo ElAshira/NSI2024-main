@@ -2,27 +2,25 @@ import pygame
 
 pygame.init()
 
-fenetre = pygame.display.set_mode((800,800))
+fenetre = pygame.display.set_mode((800, 800))
 
 pygame.display.set_caption("Antivirus")
 
-background_image =  pygame.image.load("Assets\\background.png")
+background_image = pygame.image.load("Assets\\background.png")
 title = pygame.image.load("Assets\\title.png")
 boutton_jouer = pygame.image.load("Assets\\BOUTTON_JOUER.png")
 boutton_option = pygame.image.load("Assets\\boutton_option.png")
 exit = False
 
-def game(fenetre):
 
+def game(fenetre):
     pygame.display.set_caption("Antivirus")
 
     game_background = pygame.image.load("Assets\\game_background.png")
     fenetre.blit(game_background, dest=(0, 0))
 
     grille_image = pygame.image.load("Assets\\PlateauDeJeu.png")
-    fenetre.blit(grille_image, dest=(-85,150))
-
-
+    fenetre.blit(grille_image, dest=(-85, 150))
 
 
 def main_menu():
@@ -46,5 +44,5 @@ def main_menu():
                     print("Jeu")
         pygame.display.update()
 
-main_menu()
 
+main_menu()
