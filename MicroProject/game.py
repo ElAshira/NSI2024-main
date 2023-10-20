@@ -16,7 +16,7 @@ exit = False
 
 def game(fenetre):
     exit = False
-    fenetre_jeu = pygame.display.set_mode((800,800))
+    fenetre_jeu = pygame.display.set_mode((800, 800))
     pygame.display.set_caption("En jeu !")
 
     game_background = pygame.image.load("Assets\\game_background.png")
@@ -27,14 +27,17 @@ def game(fenetre):
     file_level = open("file_level.txt")
     level = int(file_level.readline())
     if level == 1:
-        piece_1 = mclass(200,250, "Assets\\molecule\\8.png")
-        piece_2 = mclass(500,245,'Assets\\molecule\\3.png')
+        piece_1 = mclass(200, 250, "Assets\\molecule\\8.png")
+        piece_2 = mclass(500, 245, 'Assets\\molecule\\3.png')
+        hitbox_piece_1 = pygame.Rect(piece_1.x, piece_1.y, piece_1.image.get_width(), piece_1.image.get_height())
+        hitbox_piece_2 = pygame.Rect(piece_2.x, piece_2.y, piece_2.image.get_width(), piece_2.image.get_height())
         collisionneur = cclass(490, 400)
         collisionneur2 = cclass(200, 400)
         fenetre_jeu.blit(piece_1.get_image(), dest=(piece_1.x, piece_1.y))
         fenetre_jeu.blit(piece_2.get_image(), dest=(piece_2.x, piece_2.y))
         fenetre_jeu.blit(collisionneur.image, dest=(collisionneur.x, collisionneur.y))
         fenetre_jeu.blit(collisionneur2.image, dest=(collisionneur2.x, collisionneur2.y))
+
     while not exit:
         for event in pygame.event.get():
 
