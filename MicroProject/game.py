@@ -29,12 +29,21 @@ def game():
     if level == 1:
         pink = mclass(200, 250, "Assets\\molecule\\8.png")
         virus = mclass(500, 245, 'Assets\\molecule\\3.png')
+        pink_hitbox = pink.image.get_rect()
+        virus_hitbox = virus.image.get_rect()
         collisionneur = cclass(490, 400)
         collisionneur2 = cclass(200, 400)
+        collisionneur_hitbox = collisionneur.image.get_rect()
+        collisionneur2_hitbox = collisionneur2.image.get_rect()
         fenetre_jeu.blit(collisionneur.image, dest=(collisionneur.x, collisionneur.y))
         fenetre_jeu.blit(collisionneur2.image, dest=(collisionneur2.x, collisionneur2.y))
         fenetre_jeu.blit(pink.image, dest=(pink.x, pink.y))
         fenetre_jeu.blit(virus.image, dest=(virus.x, virus.y))
+        hitboxes_pink = [virus_hitbox, collisionneur.hitbox, collisionneur2.hitbox]
+        hitboxes_virus = [pink_hitbox, collisionneur.hitbox, collisionneur2.hitbox]
+
+        # Create a copy of pink's hitbox with its current position
+
     selected = "pink"
     while not exit:
         for event in pygame.event.get():
@@ -49,12 +58,24 @@ def game():
             if selected == "pink":
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
                     pink.move(-5,-5)
+                    if pink.hitbox.collidelist(hitboxes_pink) != -1:
+                        pink.move(5,5)
                 elif event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
+
                     pink.move(5,5)
+                    if pink.hitbox.collidelist(hitboxes_pink) != -1:
+                        pink.move(-5,-5)
                 elif event.type == pygame.KEYDOWN and event.key == pygame.K_LEFT:
                     pink.move(-5, 5)
+                    if pink.hitbox.collidelist(hitboxes_pink) != -1:
+                        pink.move(5,-5)
+
                 elif event.type == pygame.KEYDOWN and event.key == pygame.K_RIGHT:
                     pink.move(5, -5)
+                    if pink.hitbox.collidelist(hitboxes_pink) != -1:
+                        pink.move(-5,5)
+
+
             if selected == "virus":
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
                     virus.move(-5,-5)
