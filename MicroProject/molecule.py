@@ -19,7 +19,6 @@ class Molecule:
         self.x = x
         self.y = y
 
-
 class Colisionneur:
     def __init__(self, x,y):
         self.x = x

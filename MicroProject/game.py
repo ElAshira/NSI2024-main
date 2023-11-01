@@ -14,10 +14,10 @@ boutton_option = pygame.image.load("Assets\\boutton_option.png")
 exit = False
 
 
-def game(fenetre):
+def game():
     exit = False
     fenetre_jeu = pygame.display.set_mode((800, 800))
-    pygame.display.set_caption("En jeu !")
+    pygame.display.set_caption("En jeu!")
 
     game_background = pygame.image.load("Assets\\game_background.png")
     fenetre_jeu.blit(game_background, dest=(0, 0))
@@ -27,23 +27,54 @@ def game(fenetre):
     file_level = open("file_level.txt")
     level = int(file_level.readline())
     if level == 1:
-        piece_1 = mclass(200, 250, "Assets\\molecule\\8.png")
-        piece_2 = mclass(500, 245, 'Assets\\molecule\\3.png')
-        hitbox_piece_1 = pygame.Rect(piece_1.x, piece_1.y, piece_1.image.get_width(), piece_1.image.get_height())
-        hitbox_piece_2 = pygame.Rect(piece_2.x, piece_2.y, piece_2.image.get_width(), piece_2.image.get_height())
+        pink = mclass(200, 250, "Assets\\molecule\\8.png")
+        virus = mclass(500, 245, 'Assets\\molecule\\3.png')
         collisionneur = cclass(490, 400)
         collisionneur2 = cclass(200, 400)
-        fenetre_jeu.blit(piece_1.get_image(), dest=(piece_1.x, piece_1.y))
-        fenetre_jeu.blit(piece_2.get_image(), dest=(piece_2.x, piece_2.y))
+        fenetre_jeu.blit(collisionneur.image, dest=(collisionneur.x, collisionneur.y))
+        fenetre_jeu.blit(collisionneur2.image, dest=(collisionneur2.x, collisionneur2.y))
+        fenetre_jeu.blit(pink.image, dest=(pink.x, pink.y))
+        fenetre_jeu.blit(virus.image, dest=(virus.x, virus.y))
+    selected = "pink"
+    while not exit:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                exit = True
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_RCTRL:
+                print(selected)
+                if selected == "pink":
+                    selected = "virus"
+                elif selected == "virus":
+                    selected = "pink"
+            if selected == "pink":
+                if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
+                    pink.move(-5,-5)
+                elif event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
+                    pink.move(5,5)
+                elif event.type == pygame.KEYDOWN and event.key == pygame.K_LEFT:
+                    pink.move(-5, 5)
+                elif event.type == pygame.KEYDOWN and event.key == pygame.K_RIGHT:
+                    pink.move(5, -5)
+            if selected == "virus":
+                if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
+                    virus.move(-5,-5)
+                elif event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
+                    virus.move(5,5)
+                elif event.type == pygame.KEYDOWN and event.key == pygame.K_LEFT:
+                    virus.move(-5, 5)
+                elif event.type == pygame.KEYDOWN and event.key == pygame.K_RIGHT:
+                    virus.move(5, -5)
+        # Redraw the game elements
+        fenetre_jeu.blit(game_background, dest=(0, 0))
+        fenetre_jeu.blit(grille_image, dest=(-85, 150))
+        fenetre_jeu.blit(pink.image, dest=(pink.x, pink.y))
+        fenetre_jeu.blit(virus.image, dest=(virus.x, virus.y))
         fenetre_jeu.blit(collisionneur.image, dest=(collisionneur.x, collisionneur.y))
         fenetre_jeu.blit(collisionneur2.image, dest=(collisionneur2.x, collisionneur2.y))
 
-    while not exit:
-        for event in pygame.event.get():
-
-            if event.type == pygame.QUIT:
-                exit = True
         pygame.display.update()
+
+
 
 def main_menu():
     exit = False
@@ -61,9 +92,8 @@ def main_menu():
                 pos = pygame.mouse.get_pos()
                 if o.collidepoint(pos):
                     print("Options")
-
                 if j.collidepoint(pos):
-                    game(fenetre)
+                    game()
                     exit = True
                     print("Jeu")
         pygame.display.update()
