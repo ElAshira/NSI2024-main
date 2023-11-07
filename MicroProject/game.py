@@ -9,8 +9,8 @@ pygame.display.set_caption("Antivirus")
 
 background_image = pygame.image.load("Assets\\background.png")
 title = pygame.image.load("Assets\\title.png")
-boutton_jouer = pygame.image.load("Assets\\BOUTTON_JOUER.png")
-boutton_option = pygame.image.load("Assets\\boutton_option.png")
+play_button = pygame.image.load("Assets\\BOUTTON_JOUER.png")
+option_button = pygame.image.load("Assets\\boutton_option.png")
 exit = False
 
 
@@ -29,18 +29,14 @@ def game():
     if level == 1:
         pink = mclass(200, 250, "Assets\\molecule\\8.png")
         virus = mclass(500, 245, 'Assets\\molecule\\3.png')
-        pink_hitbox = pink.image.get_rect()
-        virus_hitbox = virus.image.get_rect()
         collisionneur = cclass(490, 400)
         collisionneur2 = cclass(200, 400)
-        collisionneur_hitbox = collisionneur.image.get_rect()
-        collisionneur2_hitbox = collisionneur2.image.get_rect()
         fenetre_jeu.blit(collisionneur.image, dest=(collisionneur.x, collisionneur.y))
         fenetre_jeu.blit(collisionneur2.image, dest=(collisionneur2.x, collisionneur2.y))
         fenetre_jeu.blit(pink.image, dest=(pink.x, pink.y))
         fenetre_jeu.blit(virus.image, dest=(virus.x, virus.y))
-        hitboxes_pink = [virus_hitbox, collisionneur.hitbox, collisionneur2.hitbox]
-        hitboxes_virus = [pink_hitbox, collisionneur.hitbox, collisionneur2.hitbox]
+        hitboxes_pink = [virus.hitbox, collisionneur.hitbox, collisionneur2.hitbox]
+        hitboxes_virus = [pink.hitbox, collisionneur.hitbox, collisionneur2.hitbox]
 
         # Create a copy of pink's hitbox with its current position
 
@@ -78,13 +74,22 @@ def game():
 
             if selected == "virus":
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
-                    virus.move(-5,-5)
+                    virus.move(-5, -5)
+                    if virus.hitbox.collidelist(hitboxes_virus) != -1:
+                        virus.move(5,5)
+
                 elif event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
-                    virus.move(5,5)
-                elif event.type == pygame.KEYDOWN and event.key == pygame.K_LEFT:
                     virus.move(-5, 5)
+                    if virus.hitbox.collidelist(hitboxes_virus) != -1:
+                        virus.move(5,-5)
+                elif event.type == pygame.KEYDOWN and event.key == pygame.K_LEFT:
+                    virus.move(-5,-5)
+                    if virus.hitbox.collidelist(hitboxes_virus) != -1:
+                        virus.move(5,5)
                 elif event.type == pygame.KEYDOWN and event.key == pygame.K_RIGHT:
                     virus.move(5, -5)
+                    if virus.hitbox.collidelist(hitboxes_virus) != -1:
+                        virus.move(-5, 5)
         # Redraw the game elements
         fenetre_jeu.blit(game_background, dest=(0, 0))
         fenetre_jeu.blit(grille_image, dest=(-85, 150))
@@ -101,8 +106,8 @@ def main_menu():
     exit = False
     fenetre.blit(background_image, dest=(-25, 0))
     fenetre.blit(title, dest=(175, -0))
-    j = fenetre.blit(boutton_jouer, dest=(100, 245))
-    o = fenetre.blit(boutton_option, dest=(100, 500))
+    j = fenetre.blit(play_button, dest=(100, 245))
+    o = fenetre.blit(option_button, dest=(100, 500))
     while not exit:
         for event in pygame.event.get():
 
@@ -116,7 +121,7 @@ def main_menu():
                 if j.collidepoint(pos):
                     game()
                     exit = True
-                    print("Jeu")
+                    print("Game")
         pygame.display.update()
 
 
