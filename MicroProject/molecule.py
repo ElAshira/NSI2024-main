@@ -37,7 +37,7 @@ class Colisionneur:
         self.image = pygame.image.load("Assets\\molecule\\block.png")
         self.width = width
         self.height = height
-        self.hitbox = pygame.Rect(self.x +5, self.y+5, self.width, self.height)
+        self.hitbox = pygame.Rect(self.x +15, self.y+10, self.width, self.height)
         self.can_move = False
     def set_position(self,x,y):
         self.x = x
