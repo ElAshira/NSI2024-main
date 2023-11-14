@@ -61,7 +61,7 @@ def game():
         print(pink.hitbox_list[0])
 
         # Create a copy of pink's hitbox with its current position
-
+    show_hitbox = False
     selected = "pink"
     while not exit:
         for event in pygame.event.get():
@@ -72,6 +72,12 @@ def game():
             #         exit = True
             #         main_menu()
 
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_F3:
+                if show_hitbox:
+                    show_hitbox = False
+
+                else:
+                    show_hitbox = True
             if event.type == pygame.KEYDOWN and event.key == pygame.K_RCTRL:
                 print(selected)
                 if selected == "pink":
@@ -148,25 +154,27 @@ def game():
             fenetre_jeu.blit(pink_on, dest=(170, 19))
         fenetre_jeu.blit(collisionneur.image, dest=(collisionneur.x, collisionneur.y))
         fenetre_jeu.blit(collisionneur2.image, dest=(collisionneur2.x, collisionneur2.y))
-        pygame.draw.rect(fenetre_jeu, (255, 0, 0), collisionneur.hitbox, 2)
-        pygame.draw.rect(fenetre_jeu, (255, 0, 0), virus.hitbox_list[0], 2)
-        pygame.draw.rect(fenetre_jeu, (255, 0, 0), virus.hitbox_list[1], 2)
-        pygame.draw.rect(fenetre_jeu, (255, 0, 0), virus.hitbox_list[2], 2)
-        pygame.draw.rect(fenetre_jeu, (255, 0, 0), pink.hitbox_list[0], 2)
-        pygame.draw.rect(fenetre_jeu, (255, 0, 0), pink.hitbox_list[1], 2)
-        pygame.draw.rect(fenetre_jeu, (255, 0, 0), pink.hitbox_list[2], 2)
-        pygame.draw.rect(fenetre_jeu, (255, 0, 0), pink.hitbox_list[2], 2)
-        pygame.draw.rect(fenetre_jeu, (255, 0, 0), (70, 130, 70, 70), 2)
-        pygame.draw.rect(fenetre_jeu, (255, 0, 0), collisionneur2.hitbox_liste[2], 2)
-        pygame.draw.rect(fenetre_jeu, (255, 0, 0), collisionneur2.hitbox_liste[1], 2)
-        pygame.draw.rect(fenetre_jeu, (255, 0, 0), collisionneur2.hitbox_liste[0], 2)
-        pygame.draw.rect(fenetre_jeu, (255, 0, 0), collisionneur2.hitbox_liste[2], 2)
-        pygame.draw.rect(fenetre_jeu, (255, 0, 0), (180, 150, 480, 25), 2)
-        pygame.draw.rect(fenetre_jeu, (255,0,0), (660, 180, 25, 500), 2)
-        pygame.draw.rect(fenetre_jeu, (255, 0, 0), (660,720, -500, 25), 2)
-        pygame.draw.rect(fenetre_jeu, (255,0,0), (100,750,25,-500),2)
-        pygame.draw.rect(fenetre_jeu, (255, 0, 0), collisionneur.hitbox_liste[1], 2)
-        pygame.draw.rect(fenetre_jeu, (255, 0, 0), collisionneur.hitbox_liste[0], 2)
+
+        if show_hitbox:
+            pygame.draw.rect(fenetre_jeu, (255, 0, 0), collisionneur.hitbox, 2)
+            pygame.draw.rect(fenetre_jeu, (255, 0, 0), virus.hitbox_list[0], 2)
+            pygame.draw.rect(fenetre_jeu, (255, 0, 0), virus.hitbox_list[1], 2)
+            pygame.draw.rect(fenetre_jeu, (255, 0, 0), virus.hitbox_list[2], 2)
+            pygame.draw.rect(fenetre_jeu, (255, 0, 0), pink.hitbox_list[0], 2)
+            pygame.draw.rect(fenetre_jeu, (255, 0, 0), pink.hitbox_list[1], 2)
+            pygame.draw.rect(fenetre_jeu, (255, 0, 0), pink.hitbox_list[2], 2)
+            pygame.draw.rect(fenetre_jeu, (255, 0, 0), pink.hitbox_list[2], 2)
+            pygame.draw.rect(fenetre_jeu, (255, 0, 0), (70, 130, 70, 70), 2)
+            pygame.draw.rect(fenetre_jeu, (255, 0, 0), collisionneur2.hitbox_liste[2], 2)
+            pygame.draw.rect(fenetre_jeu, (255, 0, 0), collisionneur2.hitbox_liste[1], 2)
+            pygame.draw.rect(fenetre_jeu, (255, 0, 0), collisionneur2.hitbox_liste[0], 2)
+            pygame.draw.rect(fenetre_jeu, (255, 0, 0), collisionneur2.hitbox_liste[2], 2)
+            pygame.draw.rect(fenetre_jeu, (255, 0, 0), (180, 150, 480, 25), 2)
+            pygame.draw.rect(fenetre_jeu, (255,0,0), (660, 180, 25, 500), 2)
+            pygame.draw.rect(fenetre_jeu, (255, 0, 0), (660,720, -500, 25), 2)
+            pygame.draw.rect(fenetre_jeu, (255,0,0), (100,750,25,-500),2)
+            pygame.draw.rect(fenetre_jeu, (255, 0, 0), collisionneur.hitbox_liste[1], 2)
+            pygame.draw.rect(fenetre_jeu, (255, 0, 0), collisionneur.hitbox_liste[0], 2)
 
         pygame.display.update()
         #
