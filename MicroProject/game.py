@@ -20,10 +20,10 @@ def game():
     exit = False
     fenetre_jeu = pygame.display.set_mode((800, 800))
     pygame.display.set_caption("En jeu!")
-    virus_on = pygame.image.load("Assets\\molecule\\virus_on.png")
-    virus_off = pygame.image.load('Assets\\molecule\\virus_off.png')
-    pink_on = pygame.image.load("Assets\\molecule\\piece_1.png")
-    pink_off = pygame.image.load("Assets\\molecule\\piece_1_off.png")
+    virus_on = pygame.image.load("Assets/SelectionMoleculeImage/virus_on.png")
+        virus_off = pygame.image.load('Assets/SelectionMoleculeImage/virus_off.png')
+    pink_on = pygame.image.load("Assets/SelectionMoleculeImage/piece_1.png")
+    pink_off = pygame.image.load("Assets/SelectionMoleculeImage/piece_1_off.png")
 
 
     game_background = pygame.image.load("Assets\\game_background.png")
@@ -67,10 +67,10 @@ def game():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 exit = True
-            # for rect in hitboxes_pink:
-            #     if rect.colliderect(wincondition):
-            #         exit = True
-            #         main_menu()
+            for rect in hitboxes_pink:
+                if rect.colliderect(wincondition):
+                    exit = True
+                    main_menu()
 
             if event.type == pygame.KEYDOWN and event.key == pygame.K_F3:
                 if show_hitbox:
@@ -90,57 +90,57 @@ def game():
                     selected = "pink"
             if selected == "pink":
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
-                    pink.move(-10, -10)
+                    pink.move(-40, -40)
                     for rect1 in hitboxes_pink:
                         index = rect1.collidelist(pink.hitbox_list)
                         if index >= 0:
-                            pink.move(10, 10)
+                            pink.move(40, 40)
                 elif event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
 
-                    pink.move(10, 10)
+                    pink.move(40, 40)
                     for rect1 in hitboxes_pink:
                         index = rect1.collidelist(pink.hitbox_list)
                         if index >= 0:
-                            pink.move(-10, -10)
+                            pink.move(-40, -40)
                 elif event.type == pygame.KEYDOWN and event.key == pygame.K_LEFT:
-                    pink.move(-10, 10)
+                    pink.move(-40, 40)
                     for rect1 in hitboxes_pink:
                         index = rect1.collidelist(pink.hitbox_list)
                         if index >= 0:
-                            pink.move(10, -10)
+                            pink.move(40, -40)
 
                 elif event.type == pygame.KEYDOWN and event.key == pygame.K_RIGHT:
-                    pink.move(10, -10)
+                    pink.move(40, -40)
                     for rect1 in hitboxes_pink:
                         index = rect1.collidelist(pink.hitbox_list)
                         if index >= 0:
-                            pink.move(-10, 10)
+                            pink.move(-40, 40)
 
             if selected == "virus":
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
-                    virus.move(-10, -10)
+                    virus.move(-40, -40)
                     for rect1 in hitboxes_virus:
                         index = rect1.collidelist(virus.hitbox_list)
                         if index >= 0:
-                            virus.move(10, 10)
+                            virus.move(40, 40)
                 elif event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
-                    virus.move(10, 10)
+                    virus.move(40, 40)
                     for rect1 in hitboxes_virus:
                         index = rect1.collidelist(virus.hitbox_list)
                         if index >= 0:
-                            virus.move(-10, -10)
+                            virus.move(-40, -40)
                 elif event.type == pygame.KEYDOWN and event.key == pygame.K_LEFT:
-                    virus.move(-10, 10)
+                    virus.move(-40, 40)
                     for rect1 in hitboxes_virus:
                         index = rect1.collidelist(virus.hitbox_list)
                         if index >= 0:
-                            virus.move(10, -10)
+                            virus.move(40, -40)
                 elif event.type == pygame.KEYDOWN and event.key == pygame.K_RIGHT:
-                    virus.move(10, -10)
+                    virus.move(40, -40)
                     for rect1 in hitboxes_virus:
                         index = rect1.collidelist(virus.hitbox_list)
                         if index >= 0:
-                            virus.move(-10, 10)
+                            virus.move(-40, 40)
         # Redraw the game elements
         fenetre_jeu.blit(game_background, dest=(0, 0))
         fenetre_jeu.blit(grille_image, dest=(-85, 150))
@@ -172,7 +172,7 @@ def game():
             pygame.draw.rect(fenetre_jeu, (255, 0, 0), (180, 150, 480, 25), 2)
             pygame.draw.rect(fenetre_jeu, (255,0,0), (660, 180, 25, 500), 2)
             pygame.draw.rect(fenetre_jeu, (255, 0, 0), (660,720, -500, 25), 2)
-            pygame.draw.rect(fenetre_jeu, (255,0,0), (100,750,25,-500),2)
+            pygame.draw.rect(fenetre_jeu, (255,0,0), (0,750,25,-500),2)
             pygame.draw.rect(fenetre_jeu, (255, 0, 0), collisionneur.hitbox_liste[1], 2)
             pygame.draw.rect(fenetre_jeu, (255, 0, 0), collisionneur.hitbox_liste[0], 2)
 
