@@ -20,6 +20,11 @@ def game():
     exit = False
     fenetre_jeu = pygame.display.set_mode((800, 800))
     pygame.display.set_caption("En jeu!")
+    virus_on = pygame.image.load("Assets\\molecule\\virus_on.png")
+    virus_off = pygame.image.load('Assets\\molecule\\virus_off.png')
+    pink_on = pygame.image.load("Assets\\molecule\\piece_1.png")
+    pink_off = pygame.image.load("Assets\\molecule\\piece_1_off.png")
+
 
     game_background = pygame.image.load("Assets\\game_background.png")
     fenetre_jeu.blit(game_background, dest=(0, 0))
@@ -66,11 +71,16 @@ def game():
             #     if rect.colliderect(wincondition):
             #         exit = True
             #         main_menu()
+
             if event.type == pygame.KEYDOWN and event.key == pygame.K_RCTRL:
                 print(selected)
                 if selected == "pink":
                     selected = "virus"
+                    fenetre_jeu.blit(virus_on, dest=(80,20))
+                    fenetre_jeu.blit(pink_off, dest=(100,20))
                 elif selected == "virus":
+                    fenetre_jeu.blit(virus_off, dest=(80,20))
+                    fenetre_jeu.blit(pink_on, dest=(100,20))
                     selected = "pink"
             if selected == "pink":
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
@@ -130,6 +140,12 @@ def game():
         fenetre_jeu.blit(grille_image, dest=(-85, 150))
         fenetre_jeu.blit(pink.image, dest=(pink.x, pink.y))
         fenetre_jeu.blit(virus.image, dest=(virus.x, virus.y))
+        if selected == "virus":
+            fenetre_jeu.blit(virus_on, dest=(80, 20))
+            fenetre_jeu.blit(pink_off, dest=(170, 19))
+        elif selected == "pink":
+            fenetre_jeu.blit(virus_off, dest=(80, 20))
+            fenetre_jeu.blit(pink_on, dest=(170, 19))
         fenetre_jeu.blit(collisionneur.image, dest=(collisionneur.x, collisionneur.y))
         fenetre_jeu.blit(collisionneur2.image, dest=(collisionneur2.x, collisionneur2.y))
         pygame.draw.rect(fenetre_jeu, (255, 0, 0), collisionneur.hitbox, 2)
