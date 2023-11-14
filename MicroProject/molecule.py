@@ -5,14 +5,7 @@ class Molecule:
         self.image = pygame.image.load(image)
         self.x = x
         self.y = y
-        self.width = self.image.get_width()
-        self.height = self.image.get_height()
         self.hitbox_list= hitbox_list
-        self.hitbox= pygame.Rect(self.x, self.y, self.width, self.height)
-        self.move_up = False
-        self.move_down = False
-        self.move_left = False
-        self.move_right = False
     def move(self, dx, dy):
         self.x += dx
         self.y += dy
