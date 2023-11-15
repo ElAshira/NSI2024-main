@@ -14,14 +14,22 @@ boutton_jouer = pygame.image.load("Assets\\BOUTTON_JOUER.png")
 boutton_option = pygame.image.load("Assets\\boutton_option.png")
 exit = False
 
+def selection_level():
+    level_selection = pygame.display.set_mode((800,800))
+    exit = False
+    level_selection.blit(background_image, dest=(0,0))
+
+
 
 def game():
-    global wincondition, collisionneur
+    global wincondition, collisionneur, hitboxes_pink
     exit = False
     fenetre_jeu = pygame.display.set_mode((800, 800))
     pygame.display.set_caption("En jeu!")
+    fleche_sortie = pygame.image.load("Assets/fleche.png")
+    fleche_sortie_rotated = pygame.transform.rotate(fleche_sortie,-5)
     virus_on = pygame.image.load("Assets/SelectionMoleculeImage/virus_on.png")
-        virus_off = pygame.image.load('Assets/SelectionMoleculeImage/virus_off.png')
+    virus_off = pygame.image.load('Assets/SelectionMoleculeImage/virus_off.png')
     pink_on = pygame.image.load("Assets/SelectionMoleculeImage/piece_1.png")
     pink_off = pygame.image.load("Assets/SelectionMoleculeImage/piece_1_off.png")
 
@@ -31,6 +39,7 @@ def game():
 
     grille_image = pygame.image.load("Assets\\PlateauDeJeu.png")
     fenetre_jeu.blit(grille_image, dest=(-85, 150))
+
     file_level = open("file_level.txt")
     level = int(file_level.readline())
     if level == 1:  #
@@ -41,7 +50,6 @@ def game():
                        [pygame.Rect((510, 260, 70, 70)), pygame.Rect((550, 300, 70, 70)),
                         pygame.Rect((590, 340, 70, 70))])
         collisionneur = cclass(490, 400, 60, 60)
-        print(type(collisionneur))
         collisionneur2 = cclass(200, 400, 60, 60)
         wincondition = pygame.Rect(70, 130, 70, 70)
         topborder = pygame.Rect(180, 150, 500, 25)
@@ -53,12 +61,11 @@ def game():
         fenetre_jeu.blit(pink.image, dest=(pink.x, pink.y))
         fenetre_jeu.blit(virus.image, dest=(virus.x, virus.y))
         hitboxes_pink = [virus.hitbox_list[0], virus.hitbox_list[1], virus.hitbox_list[2],
-                         collisionneur.hitbox_liste[0], collisionneur.hitbox_liste[1], collisionneur2.hitbox_liste[0],
+                         collisionneur.hitbox_liste[0], collisionneur2.hitbox_liste[1], collisionneur2.hitbox_liste[0],
                          collisionneur.hitbox_liste[1], collisionneur.hitbox_liste[2], topborder, rightborder, bottomborder, leftborder]
         hitboxes_virus = [pink.hitbox_list[0], pink.hitbox_list[1], pink.hitbox_list[2], collisionneur.hitbox_liste[0],
-                          collisionneur.hitbox_liste[1], collisionneur2.hitbox_liste[0], collisionneur.hitbox_liste[1],
+                          collisionneur.hitbox_liste[1], collisionneur2.hitbox_liste[0],collisionneur2.hitbox_liste[1], collisionneur.hitbox_liste[1],
                           collisionneur.hitbox_liste[2], topborder, rightborder,bottomborder, leftborder]
-        print(pink.hitbox_list[0])
 
         # Create a copy of pink's hitbox with its current position
     show_hitbox = False
@@ -75,11 +82,9 @@ def game():
             if event.type == pygame.KEYDOWN and event.key == pygame.K_F3:
                 if show_hitbox:
                     show_hitbox = False
-
                 else:
                     show_hitbox = True
             if event.type == pygame.KEYDOWN and event.key == pygame.K_RCTRL:
-                print(selected)
                 if selected == "pink":
                     selected = "virus"
                     fenetre_jeu.blit(virus_on, dest=(80,20))
@@ -175,7 +180,7 @@ def game():
             pygame.draw.rect(fenetre_jeu, (255,0,0), (0,750,25,-500),2)
             pygame.draw.rect(fenetre_jeu, (255, 0, 0), collisionneur.hitbox_liste[1], 2)
             pygame.draw.rect(fenetre_jeu, (255, 0, 0), collisionneur.hitbox_liste[0], 2)
-
+        fenetre_jeu.blit(fleche_sortie_rotated, dest=(10, 100))
         pygame.display.update()
         #
 
@@ -186,6 +191,7 @@ def main_menu():
     fenetre.blit(title, dest=(175, -0))
     j = fenetre.blit(boutton_jouer, dest=(100, 245))
     o = fenetre.blit(boutton_option, dest=(100, 500))
+    print(type(j))
     while not exit:
         for event in pygame.event.get():
 
@@ -195,11 +201,11 @@ def main_menu():
 
                 pos = pygame.mouse.get_pos()
                 if o.collidepoint(pos):
-                    print("Options")
+                    selection_level()
+                    exit= True
                 if j.collidepoint(pos):
                     game()
                     exit = True
-                    print("Jeu")
 
         pygame.display.update()
 
