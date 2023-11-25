@@ -182,7 +182,34 @@ def game():
             pygame.draw.rect(fenetre_jeu, (255, 0, 0), collisionneur.hitbox_liste[0], 2)
         fenetre_jeu.blit(fleche_sortie_rotated, dest=(10, 100))
         pygame.display.update()
-        #
+
+
+def level_2():
+    fenetre_jeu = pygame.display.set_mode((800, 800))
+    pygame.display.set_caption("En jeu!")
+    pink = mclass(200, 250, "Assets\\molecule\\8.png",
+                  [pygame.Rect((215, 265, 72, 75)), pygame.Rect((250, 285, 180, 35)),
+                   pygame.Rect((365, 265, 72, 75))])
+    virus = mclass(500, 245, 'Assets\\molecule\\3.png',
+                   [pygame.Rect((510, 260, 70, 70)), pygame.Rect((550, 300, 70, 70)),
+                    pygame.Rect((590, 340, 70, 70))])
+    collisionneur = cclass(490, 400, 60, 60)
+    wincondition = pygame.Rect(70, 130, 70, 70)
+    topborder = pygame.Rect(180, 150, 500, 25)
+    rightborder = pygame.Rect(660, 180, 25, 480)
+    bottomborder = pygame.Rect(660, 720, -500, 25)
+    leftborder = pygame.Rect(100, 750, 25, -500)
+    fenetre_jeu.blit(collisionneur.image, dest=(collisionneur.x, collisionneur.y))
+    fenetre_jeu.blit(pink.image, dest=(pink.x, pink.y))
+    fenetre_jeu.blit(virus.image, dest=(virus.x, virus.y))
+    hitboxes_pink = [virus.hitbox_list[0], virus.hitbox_list[1], virus.hitbox_list[2],
+                     collisionneur.hitbox_liste[0],
+                     collisionneur.hitbox_liste[1], collisionneur.hitbox_liste[2], topborder, rightborder, bottomborder,
+                     leftborder]
+    hitboxes_virus = [pink.hitbox_list[0], pink.hitbox_list[1], pink.hitbox_list[2], collisionneur.hitbox_liste[0],
+                      collisionneur.hitbox_liste[1],
+                      collisionneur.hitbox_liste[1],
+                      collisionneur.hitbox_liste[2], topborder, rightborder, bottomborder, leftborder]
 
 
 def main_menu():
