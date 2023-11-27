@@ -22,8 +22,8 @@ def selection_level():
 
     image_easy = pygame.image.load("Assets/level_png/ez.png")
     image_medium = pygame.image.load("Assets/level_png/medium.png")
-    hit_medium = level_selection.blit(image_medium, dest=(205,250))
-    image_easy = level_selection.blit(image_easy, dest=(200,100))
+    hit_medium = level_selection.blit(image_medium, dest=(205, 250))
+    image_easy = level_selection.blit(image_easy, dest=(200, 100))
     while not exit:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -213,13 +213,11 @@ def level_2():
     grille_image = pygame.image.load("Assets\\PlateauDeJeu.png")
 
     fenetre_jeu.blit(background_image, dest=(0, 0))
-    fenetre_jeu.blit(grille_image, dest=(-85,100))
+    fenetre_jeu.blit(grille_image, dest=(-85, 100))
 
-
-
-    pink = mclass(435,425, "Assets/molecule/8_rotated.png",
-                  [pygame.Rect(45,45,45,45), pygame.Rect((250, 285, 180, 35)),
-                   pygame.Rect((365, 265, 72, 75))])
+    pink = mclass(435, 425, "Assets/molecule/8_rotated.png",
+                  [pygame.Rect(445, 435, 80, 70), pygame.Rect((470, 500, 35, 100)),
+                   pygame.Rect((445, 590, 80, 70))])
     virus = mclass(435, 270, 'Assets\\molecule\\3.png',
                    [pygame.Rect((450, 290, 70, 70)), pygame.Rect((490, 330, 70, 70)),
                     pygame.Rect((525, 365, 70, 70))])
@@ -242,14 +240,19 @@ def level_2():
                       collisionneur.hitbox_liste[1],
                       collisionneur.hitbox_liste[1],
                       collisionneur.hitbox_liste[2], topborder, rightborder, bottomborder, leftborder]
-    pygame.draw.rect(fenetre_jeu,(255,0,0),(450, 290, 70, 70), 2)
-    pygame.draw.rect(fenetre_jeu, (255,0,0), (490, 330, 70, 70),2)
-    pygame.draw.rect(fenetre_jeu, (255,0,0), (525, 365, 70, 70), 2)
+    pygame.draw.rect(fenetre_jeu, (255, 0, 0), (450, 290, 70, 70), 2)
+    pygame.draw.rect(fenetre_jeu, (255, 0, 0), (490, 330, 70, 70), 2)
+    pygame.draw.rect(fenetre_jeu, (255, 0, 0), (525, 365, 70, 70), 2)
+    pygame.draw.rect(fenetre_jeu, (255, 0, 0), (445, 435, 80, 70), 2)
+    pygame.draw.rect(fenetre_jeu, (255, 0, 0), (470, 500, 35, 100), 2)
+    pygame.draw.rect(fenetre_jeu, (255, 0, 0), (445, 590, 80, 70), 2)
     while not exit:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 exit = True
         pygame.display.update()
+
+
 def main_menu():
     exit = False
     fenetre.blit(background_image, dest=(-25, 0))
