@@ -221,7 +221,8 @@ def level_2():
     virus = mclass(435, 270, 'Assets\\molecule\\3.png',
                    [pygame.Rect((450, 290, 70, 70)), pygame.Rect((490, 330, 70, 70)),
                     pygame.Rect((525, 365, 70, 70))])
-    orange = mclass(355, 122, "Assets/molecule/4.png", [])
+    orange = mclass(355, 122, "Assets/molecule/4.png", [
+        pygame.Rect((365, 215, 70, 70)), pygame.Rect((525, 215, 70, 70)), pygame.Rect((445, 130, 70, 70)), pygame.Rect((445, 130, 70, 70)), pygame.Rect((365, 215, 70, 70))])
     collisionneur = cclass(345, 350, 60, 60)
     wincondition = pygame.Rect(70, 130, 70, 70)
     topborder = pygame.Rect(180, 150, 500, 25)
@@ -246,6 +247,11 @@ def level_2():
     pygame.draw.rect(fenetre_jeu, (255, 0, 0), (445, 435, 80, 70), 2)
     pygame.draw.rect(fenetre_jeu, (255, 0, 0), (470, 500, 35, 100), 2)
     pygame.draw.rect(fenetre_jeu, (255, 0, 0), (445, 590, 80, 70), 2)
+    pygame.draw.rect(fenetre_jeu, (255, 0, 0), (365, 215, 70, 70), 2)
+    pygame.draw.rect(fenetre_jeu, (255, 0, 0), (400, 190, 70, 70), 2)
+    pygame.draw.rect(fenetre_jeu, (255, 0, 0), (445, 130, 70, 70), 2)
+    pygame.draw.rect(fenetre_jeu, (255, 0, 0), (500, 190, 70, 70), 2)
+    pygame.draw.rect(fenetre_jeu, (255, 0, 0), (525, 215, 70, 70), 2)
     while not exit:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
