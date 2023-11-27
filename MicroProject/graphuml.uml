@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>Python</ID>
+  <OriginalElement>#E:/NSI/NSI2024-main/NSI2024-main/MicroProject/molecule.py</OriginalElement>
+  <nodes>
+    <node x="-190.0" y="-116.0">pygame.rect.Rect</node>
+    <node x="202.0" y="-116.0">wx.core.Display</node>
+  </nodes>
+  <notes />
+  <edges />
+  <settings layout="Hierarchic" zoom="0.6526092921203237" showDependencies="false" x="686.8999569712796" y="-114.90100804177541" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Inner Classes</Category>
+    <Category>Methods</Category>
+  </Categories>
+</Diagram>
+
