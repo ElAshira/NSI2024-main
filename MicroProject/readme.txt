@@ -21,3 +21,10 @@ Fonctions Principales
     - selection_level() : Permet au joueur de sélectionner le niveau et lance le niveau choisi.
     - game() : Gère le gameplay du niveau 1, y compris le déplacement des molécules et la détection des collisions.
     - level_2() : Fonction spécifique pour le deuxième niveau du jeu, similaire à la fonction game() mais pour un niveau différent.
+Contrôles du Jeu "Antivirus"
+
+    Utilisez les touches directionnelles (haut, bas, gauche, droite) pour déplacer les molécules sur le plateau de jeu.
+
+    Appuyez sur la touche F3 pour activer ou désactiver l'affichage des hitboxes des éléments du jeu (collisionneurs, molécules, frontières, etc.).
+
+    Changez de molécule contrôlée en appuyant sur la touche Ctrl.
